@@ -16,6 +16,7 @@
 		85A4E9902839D12F00C31ACC /* OriruyoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E98F2839D12F00C31ACC /* OriruyoTests.swift */; };
 		85A4E99A2839D12F00C31ACC /* OriruyoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9992839D12F00C31ACC /* OriruyoUITests.swift */; };
 		85A4E99C2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E99B2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift */; };
+		85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		85A4E9952839D12F00C31ACC /* OriruyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9992839D12F00C31ACC /* OriruyoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriruyoUITests.swift; sourceTree = "<group>"; };
 		85A4E99B2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriruyoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +103,12 @@
 			children = (
 				85A4E9782839D12B00C31ACC /* AppDelegate.swift */,
 				85A4E97A2839D12B00C31ACC /* SceneDelegate.swift */,
-				85A4E97C2839D12B00C31ACC /* ViewController.swift */,
+				85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */,
 				85A4E97E2839D12B00C31ACC /* Main.storyboard */,
 				85A4E9812839D12E00C31ACC /* Assets.xcassets */,
 				85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */,
 				85A4E9862839D12E00C31ACC /* Info.plist */,
+				85A4E97C2839D12B00C31ACC /* ViewController.swift */,
 			);
 			path = Oriruyo;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85A4E97D2839D12B00C31ACC /* ViewController.swift in Sources */,
+				85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */,
 				85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */,
 				85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */,
 			);
@@ -440,11 +444,14 @@
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Oriruyo/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "適切な位置で通知を送信するために位置情報を取得します。ここでは「このAppの使用中のみ許可」を選択してください。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,11 +475,14 @@
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Oriruyo/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "適切な位置で通知を送信するために位置情報を取得します。ここでは「このAppの使用中のみ許可」を選択してください。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
