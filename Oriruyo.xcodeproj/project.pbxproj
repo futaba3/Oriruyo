@@ -13,9 +13,6 @@
 		85A4E9802839D12B00C31ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E97E2839D12B00C31ACC /* Main.storyboard */; };
 		85A4E9822839D12E00C31ACC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9812839D12E00C31ACC /* Assets.xcassets */; };
 		85A4E9852839D12E00C31ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */; };
-		85A4E9902839D12F00C31ACC /* OriruyoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E98F2839D12F00C31ACC /* OriruyoTests.swift */; };
-		85A4E99A2839D12F00C31ACC /* OriruyoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9992839D12F00C31ACC /* OriruyoUITests.swift */; };
-		85A4E99C2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E99B2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift */; };
 		85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,10 +43,7 @@
 		85A4E9842839D12E00C31ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85A4E9862839D12E00C31ACC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85A4E98B2839D12F00C31ACC /* OriruyoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85A4E98F2839D12F00C31ACC /* OriruyoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriruyoTests.swift; sourceTree = "<group>"; };
 		85A4E9952839D12F00C31ACC /* OriruyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85A4E9992839D12F00C31ACC /* OriruyoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriruyoUITests.swift; sourceTree = "<group>"; };
-		85A4E99B2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriruyoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,8 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				85A4E9772839D12B00C31ACC /* Oriruyo */,
-				85A4E98E2839D12F00C31ACC /* OriruyoTests */,
-				85A4E9982839D12F00C31ACC /* OriruyoUITests */,
 				85A4E9762839D12B00C31ACC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,23 +103,6 @@
 				85A4E97C2839D12B00C31ACC /* ViewController.swift */,
 			);
 			path = Oriruyo;
-			sourceTree = "<group>";
-		};
-		85A4E98E2839D12F00C31ACC /* OriruyoTests */ = {
-			isa = PBXGroup;
-			children = (
-				85A4E98F2839D12F00C31ACC /* OriruyoTests.swift */,
-			);
-			path = OriruyoTests;
-			sourceTree = "<group>";
-		};
-		85A4E9982839D12F00C31ACC /* OriruyoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				85A4E9992839D12F00C31ACC /* OriruyoUITests.swift */,
-				85A4E99B2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift */,
-			);
-			path = OriruyoUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +247,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85A4E9902839D12F00C31ACC /* OriruyoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85A4E99C2839D12F00C31ACC /* OriruyoUITestsLaunchTests.swift in Sources */,
-				85A4E99A2839D12F00C31ACC /* OriruyoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
