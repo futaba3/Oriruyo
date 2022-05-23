@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9782839D12B00C31ACC /* AppDelegate.swift */; };
 		85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E97A2839D12B00C31ACC /* SceneDelegate.swift */; };
-		85A4E97D2839D12B00C31ACC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E97C2839D12B00C31ACC /* ViewController.swift */; };
 		85A4E9802839D12B00C31ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E97E2839D12B00C31ACC /* Main.storyboard */; };
 		85A4E9822839D12E00C31ACC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9812839D12E00C31ACC /* Assets.xcassets */; };
 		85A4E9852839D12E00C31ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */; };
@@ -37,7 +36,6 @@
 		85A4E9752839D12B00C31ACC /* Oriruyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oriruyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9782839D12B00C31ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85A4E97A2839D12B00C31ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		85A4E97C2839D12B00C31ACC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		85A4E97F2839D12B00C31ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85A4E9812839D12E00C31ACC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85A4E9842839D12E00C31ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 				85A4E9812839D12E00C31ACC /* Assets.xcassets */,
 				85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */,
 				85A4E9862839D12E00C31ACC /* Info.plist */,
-				85A4E97C2839D12B00C31ACC /* ViewController.swift */,
 			);
 			path = Oriruyo;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85A4E97D2839D12B00C31ACC /* ViewController.swift in Sources */,
 				85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */,
 				85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */,
 				85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */,
@@ -416,7 +412,8 @@
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Oriruyo/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。";
+				INFOPLIST_KEY_CFBundleDisplayName = ORIRUYO;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。「常に許可」を選択してください。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "適切な位置で通知を送信するために位置情報を取得します。ここでは「このAppの使用中のみ許可」を選択してください。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -447,7 +444,8 @@
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Oriruyo/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。";
+				INFOPLIST_KEY_CFBundleDisplayName = ORIRUYO;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "アプリがバックグラウンド状態の場合でも通知を送信するため常に位置情報を取得します。「常に許可」を選択してください。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "適切な位置で通知を送信するために位置情報を取得します。ここでは「このAppの使用中のみ許可」を選択してください。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
