@@ -13,6 +13,8 @@
 		85A4E9822839D12E00C31ACC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9812839D12E00C31ACC /* Assets.xcassets */; };
 		85A4E9852839D12E00C31ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */; };
 		85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */; };
+		85A4E9AC283B7CD000C31ACC /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 85A4E9AB283B7CD000C31ACC /* FloatingPanel */; };
+		85A4E9AE283C8DCB00C31ACC /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,7 @@
 		85A4E98B2839D12F00C31ACC /* OriruyoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9952839D12F00C31ACC /* OriruyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDestViewController.swift; sourceTree = "<group>"; };
+		85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A4E9AC283B7CD000C31ACC /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +98,7 @@
 				85A4E9782839D12B00C31ACC /* AppDelegate.swift */,
 				85A4E97A2839D12B00C31ACC /* SceneDelegate.swift */,
 				85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */,
+				85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */,
 				85A4E97E2839D12B00C31ACC /* Main.storyboard */,
 				85A4E9812839D12E00C31ACC /* Assets.xcassets */,
 				85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */,
@@ -118,6 +123,9 @@
 			dependencies = (
 			);
 			name = Oriruyo;
+			packageProductDependencies = (
+				85A4E9AB283B7CD000C31ACC /* FloatingPanel */,
+			);
 			productName = Oriruyo;
 			productReference = 85A4E9752839D12B00C31ACC /* Oriruyo.app */;
 			productType = "com.apple.product-type.application";
@@ -190,6 +198,9 @@
 				Base,
 			);
 			mainGroup = 85A4E96C2839D12B00C31ACC;
+			packageReferences = (
+				85A4E9AA283B7CD000C31ACC /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+			);
 			productRefGroup = 85A4E9762839D12B00C31ACC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A4E9AE283C8DCB00C31ACC /* ContentViewController.swift in Sources */,
 				85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */,
 				85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */,
 				85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */,
@@ -582,6 +594,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		85A4E9AA283B7CD000C31ACC /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		85A4E9AB283B7CD000C31ACC /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85A4E9AA283B7CD000C31ACC /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 85A4E96D2839D12B00C31ACC /* Project object */;
 }

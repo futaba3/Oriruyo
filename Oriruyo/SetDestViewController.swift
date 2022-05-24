@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FloatingPanel
 
 class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -17,17 +18,33 @@ class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     var didStartUpdatingLocation = false
     
+    var fpc = FloatingPanelController()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 常にライトモード（明るい外観）を指定することでダークモード適用を回避（そのうちダークモードに対応したい）
+        self.overrideUserInterfaceStyle = .light
         
         // インスタンスを生成
         locationManager = CLLocationManager()
         locationManager.delegate = self
         // 数百メートルの誤差を認める
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        // 常に許可の場合、バックグラウンドでも取得できるようにする
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+             // バックグラウンドでも取得する
+             locationManager.allowsBackgroundLocationUpdates = true
+        } else {
+             // バックグラウンドでは取得しない
+             locationManager.allowsBackgroundLocationUpdates = false
+        }
         
         mapView.delegate = self
+        
+        let contentVC = ContentViewController()
+        fpc.set(contentViewController: contentVC)
+        fpc.addPanel(toParent: self)
         
     }
     
@@ -101,6 +118,7 @@ class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     // 位置情報取得できたらマップを更新
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            // 通知を設定していないときはstopUpdatingLocationにしたい
             locationManager.stopUpdatingLocation()
             updateMap(currentLocation: location)
         }
