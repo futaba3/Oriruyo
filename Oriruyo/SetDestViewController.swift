@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 import FloatingPanel
 
-class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, FloatingPanelControllerDelegate {
     
     @IBOutlet var mapView: MKMapView!
     
@@ -42,10 +42,17 @@ class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         
         mapView.delegate = self
         
-        let contentVC = ContentViewController()
-        fpc.set(contentViewController: contentVC)
+        // floatingPanelの表示設定
+        fpc.delegate = self
+        fpc.layout = CustomFloatingPanelLayout()
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 9.5
+        fpc.surfaceView.appearance = appearance
+        // fromStoryboardメソッドでStoryBoardから使えるようにする
+        let searchVC = SearchViewController.fromStoryboard()
+        fpc.set(contentViewController: searchVC)
         fpc.addPanel(toParent: self)
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
