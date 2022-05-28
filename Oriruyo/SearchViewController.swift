@@ -9,12 +9,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearchCompleterDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var searchBar: UISearchBar!
     
+    @IBOutlet var table: UITableView!
+    
     var searchedDestList: [MKMapItem] = []
     
+    // 文字を入れると検索候補出てくるやつ
+    let searchCompleter = MKLocalSearchCompleter()
+    let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 //        }
         
         searchBar.delegate = self
+        
+        searchCompleter.delegate = self
+        searchCompleter.pointOfInterestFilter = pointOfInterestFilter
+        searchCompleter.resultTypes = .pointOfInterest
+        
+        table.dataSource = self
+        table.delegate = self
     }
     
     // staticはどこからでも呼び出せる静的なメソッド,　StoryBoardをfpcに導入できるようにする
@@ -50,73 +62,75 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return true
     }
     
-    // 検索バーのキャンセルがタップされた時
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // キャンセルボタンを非表示
         searchBar.showsCancelButton = false
+        searchBar.text = ""
         // キーボードを閉じる
         searchBar.resignFirstResponder()
+        
+        table.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-        
-        geocodeing()
-        
-    }
-    
-    func geocodeing() {
-        // 未入力なら無視
-        if "" == searchBar.text {
-            return
-        }
-        
-        // 検索
-        if let searchedDest = searchBar.text {
-            print(searchedDest)
-            
-            CLGeocoder().geocodeAddressString(searchedDest, completionHandler: { (placemarks, error) in
-                
-                for placemark in placemarks! {
-                    // locationにplacemark.locationをCLLocationとして代入する
-                    let location: CLLocation = placemark.location!
-                    print("Latitude: \(location.coordinate.latitude)")
-                    print("Longitude: \(location.coordinate.longitude)")
-                    
-                    let name: String = placemark.name!
-                    print(name)
-                    
- 
-                }
-                
-            })
-            
-        }
-//        CLGeocoder().geocodeAddressString(searchedDest) { placemarks, error in
-//            if let lat = placemarks?.first?.location?.coordinate.latitude {
-//                print("緯度 : \(lat)")
-//            }
-//            if let lng = placemarks?.first?.location?.coordinate.longitude {
-//                print("経度 : \(lng)")
-//            }
-//            if let name = placemarks.name {
-//                print(name)
-//            }
-//            // 今は横浜を入れると横浜市役所が出てくるから駅名表示できるようにしたい
-//        }
-        
-//        CLGeocoder().geocodeAddressString(dest) { placemarks, error in
-//            if let destName = placemarks {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.endEditing(true)
 //
-//                print("緯度 : \(destName)")
-//            }
-//            if let lng = placemarks?.first?.location?.coordinate.longitude {
-//                print("経度 : \(lng)")
-//            }
+//        if (searchBar.text != "") {
+//            searchDest()
 //        }
+//    }
+//
+    // Completerを使って検索結果を表示する
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if let searchText = searchBar.text {
+            searchCompleter.queryFragment = searchText
+        }
         
+        return true
+    }
+    
+//    func searchDest() {
+//        // 検索条件を作成する
+//        if let searchedDest = searchBar.text {
+//            let request = MKLocalSearch.Request()
+//            request.naturalLanguageQuery = searchedDest
+//        }
+//    }
+    
+    // セルの数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.searchCompleter.results.count
+    }
+    
+    // cellに表示する内容
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
+
+        // カスタムセルではなくデフォルトのスタイルを使う（IB宣言いらない）
+        var content = cell.defaultContentConfiguration()
+        content.text = searchCompleter.results[indexPath.row].title
+        content.image = UIImage(systemName: "mappin.circle")
+        
+        cell.contentConfiguration = content
+        
+        return cell
+    }
+    
+    // cellが選択された時
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("aa")
     }
 
+    // セクションの数
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
-
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        table.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error)
+    }
 }
