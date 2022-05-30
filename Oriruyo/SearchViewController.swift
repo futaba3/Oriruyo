@@ -17,7 +17,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     var searchedDestList: [MKMapItem] = []
     
-    // 文字を入れると検索候補出てくるやつ
+    // 文字入れると検索候補が出る、クエリの補完
     let searchCompleter = MKLocalSearchCompleter()
     let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
 
@@ -63,9 +63,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         // キャンセルボタンを非表示
         searchBar.showsCancelButton = false
-        searchBar.text = ""
         // キーボードを閉じる
         searchBar.resignFirstResponder()
         
@@ -84,9 +84,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if let searchText = searchBar.text {
             searchCompleter.queryFragment = searchText
+            // searchCompleter.resultsに検索結果のMKLocalSearchCompletionが入る
         }
         
         return true
+    }
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        table.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error)
     }
     
 //    func searchDest() {
@@ -118,19 +127,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     // cellが選択された時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("aa")
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let SetDestViewController = storyboard.instantiateViewController(withIdentifier: "SetDestViewController") as? SetDestViewController else { return }
+//
+//        SetDestViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
+        
     }
 
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        table.reloadData()
-    }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        print(error)
     }
 }

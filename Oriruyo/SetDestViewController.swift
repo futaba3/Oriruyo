@@ -15,8 +15,12 @@ class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBOutlet var mapView: MKMapView!
     
     var locationManager: CLLocationManager!
-    
+
     var didStartUpdatingLocation = false
+    
+    let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
+    
+    var request = MKLocalSearch.Request()
     
     var fpc = FloatingPanelController()
     
@@ -41,6 +45,7 @@ class SetDestViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         }
         
         mapView.delegate = self
+        mapView.pointOfInterestFilter = pointOfInterestFilter
         
         // floatingPanelの表示設定
         fpc.delegate = self

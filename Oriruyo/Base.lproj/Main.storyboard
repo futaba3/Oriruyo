@@ -12,7 +12,7 @@
         <!--Set Dest View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SetDestViewController" customModule="Oriruyo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetDestViewController" id="BYZ-38-t0r" customClass="SetDestViewController" customModule="Oriruyo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,19 +46,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-5K-Lg0">
-                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-5K-Lg0">
+                                <rect key="frame" x="0.0" y="114" width="414" height="782"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="6YS-Js-UNM" style="IBUITableViewCellStyleDefault" id="TC5-Ef-pX6">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="6YS-Js-UNM" rowHeight="60" style="IBUITableViewCellStyleDefault" id="TC5-Ef-pX6">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TC5-Ef-pX6" id="Tiy-vZ-hUx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6YS-Js-UNM">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -71,7 +71,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="降りる場所を検索" translatesAutoresizingMaskIntoConstraints="NO" id="Cwe-cW-nSu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6rO-ki-oSQ"/>
                                 </constraints>
@@ -87,7 +87,7 @@
                         <constraints>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="leading" secondItem="hUK-g7-774" secondAttribute="leading" id="3ty-Ls-usm"/>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="top" secondItem="Cwe-cW-nSu" secondAttribute="bottom" id="4f2-aK-DRT"/>
-                            <constraint firstItem="Cwe-cW-nSu" firstAttribute="top" secondItem="hUK-g7-774" secondAttribute="top" id="6xh-DZ-ttw"/>
+                            <constraint firstItem="Cwe-cW-nSu" firstAttribute="top" secondItem="hUK-g7-774" secondAttribute="top" constant="20" id="6xh-DZ-ttw"/>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="trailing" secondItem="hUK-g7-774" secondAttribute="trailing" id="98v-ET-Fnf"/>
                             <constraint firstItem="Cwe-cW-nSu" firstAttribute="trailing" secondItem="hUK-g7-774" secondAttribute="trailing" id="NLC-Nu-kz3"/>
                             <constraint firstItem="Cwe-cW-nSu" firstAttribute="leading" secondItem="hUK-g7-774" secondAttribute="leading" id="UEQ-9e-jvQ"/>
