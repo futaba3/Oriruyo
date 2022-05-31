@@ -171,10 +171,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         search.start(completionHandler: {(response, error) in
             response?.mapItems.forEach { item in
-                let point = MKPointAnnotation()
-                point.coordinate = item.placemark.coordinate
-                point.title = item.placemark.title
-                self.mapView.addAnnotation(point)
+                let pin = MKPointAnnotation()
+                pin.coordinate = item.placemark.coordinate
+                pin.title = item.placemark.title
+                self.mapView.addAnnotation(pin)
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })
@@ -188,7 +188,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //                    annotation.coordinate = CLLocationCoordinate2DMake(placemark.placemark.coordinate.latitude, placemark.placemark.coordinate.longitude)
 //                    annotation.title = placemark.placemark.name
 //                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-//                    // SearchVCで緯度経度取得して逆ジオコーディングしたい
 //                }
 //            }
 //        })
