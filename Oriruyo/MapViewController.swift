@@ -165,19 +165,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //        let setDestVC = SetDestViewController.fromStoryboard()
 //        fpc.set(contentViewController: setDestVC)
 //        fpc.addPanel(toParent: self)
+        print("✋\(request)")
+
         let search = MKLocalSearch(request: request)
- 
-        search.start(completionHandler: {(result, error) in
-            if nil != result {
-                for placemark in (result?.mapItems)! {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = CLLocationCoordinate2DMake(placemark.placemark.coordinate.latitude, placemark.placemark.coordinate.longitude)
-                    annotation.title = placemark.placemark.name
-                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-                    // SearchVCで緯度経度取得して逆ジオコーディングしたい
-                }
+
+        search.start(completionHandler: {(response, error) in
+            response?.mapItems.forEach { item in
+                let point = MKPointAnnotation()
+                point.coordinate = item.placemark.coordinate
+                point.title = item.placemark.title
+                self.mapView.addAnnotation(point)
             }
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })
+        
+        
+
+//        search.start(completionHandler: {(result, error) in
+//            if nil != result {
+//                for placemark in (result?.mapItems)! {
+//                    let annotation = MKPointAnnotation()
+//                    annotation.coordinate = CLLocationCoordinate2DMake(placemark.placemark.coordinate.latitude, placemark.placemark.coordinate.longitude)
+//                    annotation.title = placemark.placemark.name
+//                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+//                    // SearchVCで緯度経度取得して逆ジオコーディングしたい
+//                }
+//            }
+//        })
         
         print("😆")
     }

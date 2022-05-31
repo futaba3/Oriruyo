@@ -17,8 +17,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     let mapViewController = MapViewController()
     
-    var searchedDestList: [MKMapItem] = []
-    
     // 文字入れると検索候補が出る、クエリの補完
     let searchCompleter = MKLocalSearchCompleter()
     let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
@@ -109,9 +107,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
 
-        // カスタムセルではなくデフォルトのスタイルを使う（IB宣言いらない）
+        // カスタムセルではなくデフォルトの設定を取得する
         var content = cell.defaultContentConfiguration()
+        
         content.text = searchCompleter.results[indexPath.row].title
+//        content.secondaryText = searchCompleter.results[indexPath.row].subtitle
         content.image = UIImage(systemName: "mappin.circle")
         
         cell.contentConfiguration = content
