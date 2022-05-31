@@ -14,9 +14,9 @@
 		85A4E9852839D12E00C31ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */; };
 		85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */; };
 		85A4E9AC283B7CD000C31ACC /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 85A4E9AB283B7CD000C31ACC /* FloatingPanel */; };
-		85A4E9AE283C8DCB00C31ACC /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */; };
 		85A4E9B428405FF800C31ACC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B328405FF800C31ACC /* SearchViewController.swift */; };
 		85A4E9B6284061EC00C31ACC /* CustomFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */; };
+		85A4E9B82845980D00C31ACC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B72845980D00C31ACC /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,9 +47,9 @@
 		85A4E98B2839D12F00C31ACC /* OriruyoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9952839D12F00C31ACC /* OriruyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriruyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDestViewController.swift; sourceTree = "<group>"; };
-		85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		85A4E9B328405FF800C31ACC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFloatingPanelLayout.swift; sourceTree = "<group>"; };
+		85A4E9B72845980D00C31ACC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +101,9 @@
 			children = (
 				85A4E9782839D12B00C31ACC /* AppDelegate.swift */,
 				85A4E97A2839D12B00C31ACC /* SceneDelegate.swift */,
+				85A4E9B72845980D00C31ACC /* MapViewController.swift */,
 				85A4E9A82839D9C900C31ACC /* SetDestViewController.swift */,
 				85A4E9B328405FF800C31ACC /* SearchViewController.swift */,
-				85A4E9AD283C8DCB00C31ACC /* ContentViewController.swift */,
 				85A4E97E2839D12B00C31ACC /* Main.storyboard */,
 				85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */,
 				85A4E9812839D12E00C31ACC /* Assets.xcassets */,
@@ -251,11 +251,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				85A4E9B428405FF800C31ACC /* SearchViewController.swift in Sources */,
-				85A4E9AE283C8DCB00C31ACC /* ContentViewController.swift in Sources */,
 				85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */,
 				85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */,
 				85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */,
 				85A4E9B6284061EC00C31ACC /* CustomFloatingPanelLayout.swift in Sources */,
+				85A4E9B82845980D00C31ACC /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

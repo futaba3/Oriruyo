@@ -15,6 +15,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     @IBOutlet var table: UITableView!
     
+    let mapViewController = MapViewController()
+    
     var searchedDestList: [MKMapItem] = []
     
     // 文字入れると検索候補が出る、クエリの補完
@@ -98,14 +100,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         print(error)
     }
     
-//    func searchDest() {
-//        // 検索条件を作成する
-//        if let searchedDest = searchBar.text {
-//            let request = MKLocalSearch.Request()
-//            request.naturalLanguageQuery = searchedDest
-//        }
-//    }
-    
     // セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.searchCompleter.results.count
@@ -128,10 +122,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     // cellが選択された時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let SetDestViewController = storyboard.instantiateViewController(withIdentifier: "SetDestViewController") as? SetDestViewController else { return }
-//
-//        SetDestViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
+        mapViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
+        
+        mapViewController.search()
         
     }
 
