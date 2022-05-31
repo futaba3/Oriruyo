@@ -124,7 +124,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         
         mapViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
         
-        mapViewController.search()
+        mapViewController.showPin()
         
     }
 

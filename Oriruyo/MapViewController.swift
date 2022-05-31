@@ -160,7 +160,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.setRegion(region, animated: true)
     }
     
-    func search() {
+    func showPin() {
 //        // fromStoryboardメソッドでStoryBoardから使えるようにする（子VC内のメソッドかく）
 //        let setDestVC = SetDestViewController.fromStoryboard()
 //        fpc.set(contentViewController: setDestVC)
