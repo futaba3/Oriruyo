@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     @IBOutlet var table: UITableView!
     
-    let mapViewController = MapViewController()
+    var mapViewController = MapViewController()
     
     // 文字入れると検索候補が出る、クエリの補完
     let searchCompleter = MKLocalSearchCompleter()
@@ -26,9 +26,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
 
         // 常にライトモード（明るい外観）を指定することでダークモード適用を回避
         self.overrideUserInterfaceStyle = .light
-        
         view.backgroundColor = .white
-
 //        // ダークモード対応用
 //        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
 //            // ダークモードの場合
@@ -38,6 +36,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
 //                return .white
 //            }
 //        }
+        
+        // アプリのrootViewControllerを取得してMapViewControllerに代入する
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        mapViewController = (windowScene?.windows.first?.rootViewController as? MapViewController)!
         
         searchBar.delegate = self
         
@@ -125,6 +128,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         mapViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
         
         mapViewController.showPin()
+        table.deselectRow(at: indexPath, animated: true)
         
     }
 

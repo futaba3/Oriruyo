@@ -31,17 +31,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="KvE-dr-gLt" id="QxA-zS-b9R"/>
+                        <outlet property="mapView" destination="KvE-dr-gLt" id="YBC-UK-zqZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-522" y="85"/>
         </scene>
-        <!--Search View Controller-->
+        <!--ORIRUYO-->
         <scene sceneID="6tL-AX-0Ki">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="9VT-nR-p6T" customClass="SearchViewController" customModule="Oriruyo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="9VT-nR-p6T" customClass="SearchViewController" customModule="Oriruyo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGq-eN-1Ol">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,16 +101,17 @@
                             <constraint firstAttribute="bottom" secondItem="ZBf-5K-Lg0" secondAttribute="bottom" id="rtM-wz-5xy"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="ORIRUYO" id="gj6-uS-uDg"/>
                     <connections>
-                        <outlet property="searchBar" destination="Cwe-cW-nSu" id="rxC-dm-ccb"/>
-                        <outlet property="table" destination="ZBf-5K-Lg0" id="iee-z7-fqJ"/>
+                        <outlet property="searchBar" destination="Cwe-cW-nSu" id="hBQ-EP-Xml"/>
+                        <outlet property="table" destination="ZBf-5K-Lg0" id="Iyk-R3-3Hc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE2-P0-fCH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189.85507246376812" y="83.705357142857139"/>
+            <point key="canvasLocation" x="357" y="84"/>
         </scene>
-        <!--Set Dest View Controller-->
+        <!--ORIRUYO-->
         <scene sceneID="FEZ-LM-3mE">
             <objects>
                 <viewController storyboardIdentifier="SetDestViewController" id="OUl-Wb-Kxe" customClass="SetDestViewController" customModule="Oriruyo" customModuleProvider="target" sceneMemberID="viewController">
@@ -120,10 +121,11 @@
                         <viewLayoutGuide key="safeArea" id="JU4-ej-xRq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="ORIRUYO" id="52a-To-WPp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53F-J7-YkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="84"/>
+            <point key="canvasLocation" x="1135" y="84"/>
         </scene>
     </scenes>
     <resources>

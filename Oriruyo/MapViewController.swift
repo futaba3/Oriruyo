@@ -23,6 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var request = MKLocalSearch.Request()
     
     var fpc = FloatingPanelController()
+    var setDestFpc = FloatingPanelController()
     
 
     override func viewDidLoad() {
@@ -161,10 +162,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func showPin() {
-//        // fromStoryboardメソッドでStoryBoardから使えるようにする（子VC内のメソッドかく）
-//        let setDestVC = SetDestViewController.fromStoryboard()
-//        fpc.set(contentViewController: setDestVC)
-//        fpc.addPanel(toParent: self)
+        // fromStoryboardメソッドでStoryBoardから使えるようにする（子VC内のメソッドかく）
+        let setDestVC = SetDestViewController.fromStoryboard()
+        setDestFpc.set(contentViewController: setDestVC)
+        setDestFpc.addPanel(toParent: self)
+        fpc.hide(animated: true)
         print("✋\(request)")
 
         let search = MKLocalSearch(request: request)
