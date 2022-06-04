@@ -17,6 +17,7 @@
 		85A4E9B428405FF800C31ACC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B328405FF800C31ACC /* SearchViewController.swift */; };
 		85A4E9B6284061EC00C31ACC /* CustomFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */; };
 		85A4E9B82845980D00C31ACC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A4E9B72845980D00C31ACC /* MapViewController.swift */; };
+		85EB2BD8284B9E26001A19B4 /* SetDestFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB2BD7284B9E26001A19B4 /* SetDestFloatingPanelLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		85A4E9B328405FF800C31ACC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFloatingPanelLayout.swift; sourceTree = "<group>"; };
 		85A4E9B72845980D00C31ACC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		85EB2BD7284B9E26001A19B4 /* SetDestFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDestFloatingPanelLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				85A4E9B328405FF800C31ACC /* SearchViewController.swift */,
 				85A4E97E2839D12B00C31ACC /* Main.storyboard */,
 				85A4E9B5284061EC00C31ACC /* CustomFloatingPanelLayout.swift */,
+				85EB2BD7284B9E26001A19B4 /* SetDestFloatingPanelLayout.swift */,
 				85A4E9812839D12E00C31ACC /* Assets.xcassets */,
 				85A4E9832839D12E00C31ACC /* LaunchScreen.storyboard */,
 				85A4E9862839D12E00C31ACC /* Info.plist */,
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85A4E9B428405FF800C31ACC /* SearchViewController.swift in Sources */,
+				85EB2BD8284B9E26001A19B4 /* SetDestFloatingPanelLayout.swift in Sources */,
 				85A4E9A92839D9C900C31ACC /* SetDestViewController.swift in Sources */,
 				85A4E9792839D12B00C31ACC /* AppDelegate.swift in Sources */,
 				85A4E97B2839D12B00C31ACC /* SceneDelegate.swift in Sources */,

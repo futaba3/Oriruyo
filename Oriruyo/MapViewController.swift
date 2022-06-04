@@ -162,6 +162,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func showPin() {
+        // floatingPanelの表示設定
+        setDestFpc.delegate = self
+        setDestFpc.layout = SetDestFloatingPanelLayout()
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 9.5
+        setDestFpc.surfaceView.appearance = appearance
         // fromStoryboardメソッドでStoryBoardから使えるようにする（子VC内のメソッドかく）
         let setDestVC = SetDestViewController.fromStoryboard()
         setDestFpc.set(contentViewController: setDestVC)
@@ -180,21 +186,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })
-        
-        
-
-//        search.start(completionHandler: {(result, error) in
-//            if nil != result {
-//                for placemark in (result?.mapItems)! {
-//                    let annotation = MKPointAnnotation()
-//                    annotation.coordinate = CLLocationCoordinate2DMake(placemark.placemark.coordinate.latitude, placemark.placemark.coordinate.longitude)
-//                    annotation.title = placemark.placemark.name
-//                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-//                }
-//            }
-//        })
-        
-        print("😆")
     }
 
 
