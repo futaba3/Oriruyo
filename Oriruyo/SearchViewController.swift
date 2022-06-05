@@ -124,11 +124,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     // cellが選択された時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // キーボードを閉じる
+        searchBar.resignFirstResponder()
+        table.deselectRow(at: indexPath, animated: true)
         
         mapViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
         
         mapViewController.showPin()
-        table.deselectRow(at: indexPath, animated: true)
         
     }
 

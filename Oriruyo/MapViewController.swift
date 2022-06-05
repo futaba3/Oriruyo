@@ -183,6 +183,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 pin.coordinate = item.placemark.coordinate
                 pin.title = item.placemark.title
                 self.mapView.addAnnotation(pin)
+                
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                appDelegate.locationLat = item.placemark.coordinate.latitude
+//                appDelegate.locationLong = item.placemark.coordinate.longitude
+
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })

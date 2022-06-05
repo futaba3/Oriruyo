@@ -47,7 +47,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-5K-Lg0">
-                                <rect key="frame" x="0.0" y="114" width="414" height="782"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="772"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="6YS-Js-UNM" detailTextLabel="P6K-wV-6OW" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="TC5-Ef-pX6">
@@ -78,7 +78,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="降りる場所を検索" translatesAutoresizingMaskIntoConstraints="NO" id="Cwe-cW-nSu">
-                                <rect key="frame" x="0.0" y="64" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6rO-ki-oSQ"/>
                                 </constraints>
@@ -94,7 +94,7 @@
                         <constraints>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="leading" secondItem="hUK-g7-774" secondAttribute="leading" id="3ty-Ls-usm"/>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="top" secondItem="Cwe-cW-nSu" secondAttribute="bottom" id="4f2-aK-DRT"/>
-                            <constraint firstItem="Cwe-cW-nSu" firstAttribute="top" secondItem="hUK-g7-774" secondAttribute="top" constant="20" id="6xh-DZ-ttw"/>
+                            <constraint firstItem="Cwe-cW-nSu" firstAttribute="top" secondItem="hUK-g7-774" secondAttribute="top" constant="30" id="6xh-DZ-ttw"/>
                             <constraint firstItem="ZBf-5K-Lg0" firstAttribute="trailing" secondItem="hUK-g7-774" secondAttribute="trailing" id="98v-ET-Fnf"/>
                             <constraint firstItem="Cwe-cW-nSu" firstAttribute="trailing" secondItem="hUK-g7-774" secondAttribute="trailing" id="NLC-Nu-kz3"/>
                             <constraint firstItem="Cwe-cW-nSu" firstAttribute="leading" secondItem="hUK-g7-774" secondAttribute="leading" id="UEQ-9e-jvQ"/>
@@ -118,14 +118,97 @@
                     <view key="view" contentMode="scaleToFill" id="ksH-de-L1C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWI-EW-Tkz">
+                                <rect key="frame" x="20" y="250" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9EG-U1-Sjo"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="ORIRU"/>
+                                <connections>
+                                    <action selector="setAlert" destination="OUl-Wb-Kxe" eventType="touchUpInside" id="Dqd-Wo-tYW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="駅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrt-MY-AjY">
+                                <rect key="frame" x="20" y="74" width="324" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="bgV-eT-753"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxu-p9-ncy">
+                                <rect key="frame" x="344" y="74" width="50" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="b8l-5H-Jdr"/>
+                                    <constraint firstAttribute="height" constant="60" id="usH-sd-zQI"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="県,市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdU-ul-q5c">
+                                <rect key="frame" x="20" y="134" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GcK-qu-W4l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EK-iN-vD7">
+                                <rect key="frame" x="244" y="182" width="150" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Bbc-eS-afl"/>
+                                    <constraint firstAttribute="width" constant="150" id="cmY-Cp-1WL"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="距離を変更"/>
+                                <connections>
+                                    <action selector="changeAlertDistance" destination="OUl-Wb-Kxe" eventType="touchUpInside" id="Mwv-fK-it6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-5y-cFu">
+                                <rect key="frame" x="20" y="182" width="224" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="APZ-Zb-JMd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JU4-ej-xRq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JU4-ej-xRq" firstAttribute="trailing" secondItem="rdU-ul-q5c" secondAttribute="trailing" constant="20" id="3Uq-QY-qv0"/>
+                            <constraint firstItem="qWI-EW-Tkz" firstAttribute="leading" secondItem="JU4-ej-xRq" secondAttribute="leading" constant="20" id="3i3-Bf-24J"/>
+                            <constraint firstItem="qWI-EW-Tkz" firstAttribute="top" secondItem="lWQ-5y-cFu" secondAttribute="bottom" constant="8" symbolic="YES" id="DMf-ea-YA6"/>
+                            <constraint firstItem="lWQ-5y-cFu" firstAttribute="leading" secondItem="JU4-ej-xRq" secondAttribute="leading" constant="20" id="J4b-Cc-wwk"/>
+                            <constraint firstItem="4EK-iN-vD7" firstAttribute="top" secondItem="rrt-MY-AjY" secondAttribute="bottom" constant="48" id="PKi-6R-PnD"/>
+                            <constraint firstItem="JU4-ej-xRq" firstAttribute="trailing" secondItem="fxu-p9-ncy" secondAttribute="trailing" constant="20" id="SZ7-k1-ji0"/>
+                            <constraint firstItem="rdU-ul-q5c" firstAttribute="top" secondItem="JU4-ej-xRq" secondAttribute="top" constant="90" id="aZh-Jn-fTX"/>
+                            <constraint firstItem="rrt-MY-AjY" firstAttribute="leading" secondItem="JU4-ej-xRq" secondAttribute="leading" constant="20" id="c19-Py-kc7"/>
+                            <constraint firstItem="JU4-ej-xRq" firstAttribute="trailing" secondItem="4EK-iN-vD7" secondAttribute="trailing" constant="20" id="d7d-wH-XNM"/>
+                            <constraint firstItem="fxu-p9-ncy" firstAttribute="top" secondItem="JU4-ej-xRq" secondAttribute="top" constant="30" id="glv-TG-8lG"/>
+                            <constraint firstItem="rdU-ul-q5c" firstAttribute="leading" secondItem="JU4-ej-xRq" secondAttribute="leading" constant="20" id="m5H-xY-XCb"/>
+                            <constraint firstItem="JU4-ej-xRq" firstAttribute="trailing" secondItem="qWI-EW-Tkz" secondAttribute="trailing" constant="20" id="tZ5-n5-bso"/>
+                            <constraint firstItem="rrt-MY-AjY" firstAttribute="top" secondItem="JU4-ej-xRq" secondAttribute="top" constant="30" id="uBa-0h-7j5"/>
+                            <constraint firstItem="4EK-iN-vD7" firstAttribute="leading" secondItem="lWQ-5y-cFu" secondAttribute="trailing" id="uRI-im-oEO"/>
+                            <constraint firstItem="lWQ-5y-cFu" firstAttribute="top" secondItem="rrt-MY-AjY" secondAttribute="bottom" constant="48" id="vgb-qQ-Yf7"/>
+                            <constraint firstItem="JU4-ej-xRq" firstAttribute="trailing" secondItem="rrt-MY-AjY" secondAttribute="trailing" constant="70" id="wde-ta-J1A"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ORIRUYO" id="52a-To-WPp"/>
+                    <connections>
+                        <outlet property="alertDestAdressLabel" destination="rdU-ul-q5c" id="F8b-8r-nmT"/>
+                        <outlet property="alertDestNameLabel" destination="rrt-MY-AjY" id="9Xu-g2-p7O"/>
+                        <outlet property="alertDistanceLabel" destination="lWQ-5y-cFu" id="Zu5-5O-KV6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53F-J7-YkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="84"/>
+            <point key="canvasLocation" x="1134.7826086956522" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>

@@ -21,4 +21,15 @@ class SetDestFloatingPanelLayout: FloatingPanelLayout {
 //            .tip: FloatingPanelLayoutAnchor(absoluteInset: 50.0, edge: .bottom, referenceGuide: .safeArea)
         ]
     }
+    
+//    // カスタマイズした高さ
+//    func insetFor(position: FloatingPanelPosition) -> CGFloat? {
+//        switch position {
+//        case .full: return 16.0
+//        case .half: return 270.0
+//        case .tip: return 44.0
+//        default: return nil
+//        }
+//    }
+    
 }

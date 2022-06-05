@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class SetDestViewController: UIViewController {
+    
+    @IBOutlet var alertDestNameLabel: UILabel!
+    @IBOutlet var alertDestAdressLabel: UILabel!
+    @IBOutlet var alertDistanceLabel: UILabel!
+    
+    var alertIsOn: Bool = false
+    
+    var location: CLLocationCoordinate2D?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +35,11 @@ class SetDestViewController: UIViewController {
 //                return .white
 //            }
 //        }
+        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        print("😓")
+//        print(appDelegate.locationLat)
+//        print(appDelegate.locationLong)
     }
     
     // staticはどこからでも呼び出せる静的なメソッド,　StoryBoardをfpcに導入できるようにする
@@ -33,5 +48,18 @@ class SetDestViewController: UIViewController {
             return controller
         }
     
+    @IBAction func changeAlertDistance() {
+        
+    }
+    
+    @IBAction func setAlert() {
+        if alertIsOn == false {
+            // 通知設定前
+            
+        } else if alertIsOn == true {
+            // 通知設定中
+            
+        }
+    }
 
 }
