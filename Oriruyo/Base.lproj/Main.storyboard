@@ -146,6 +146,9 @@
                                     <constraint firstAttribute="height" constant="60" id="usH-sd-zQI"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="backToSearchVC" destination="OUl-Wb-Kxe" eventType="touchUpInside" id="3ro-ti-jUd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="県,市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdU-ul-q5c">
                                 <rect key="frame" x="20" y="134" width="374" height="50"/>
@@ -204,6 +207,7 @@
                         <outlet property="alertDestAdressLabel" destination="rdU-ul-q5c" id="F8b-8r-nmT"/>
                         <outlet property="alertDestNameLabel" destination="rrt-MY-AjY" id="9Xu-g2-p7O"/>
                         <outlet property="alertDistanceLabel" destination="lWQ-5y-cFu" id="Zu5-5O-KV6"/>
+                        <outlet property="setAlertButton" destination="qWI-EW-Tkz" id="1zz-kE-bae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53F-J7-YkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

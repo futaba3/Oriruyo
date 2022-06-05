@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     
     @IBOutlet var table: UITableView!
     
-    var mapViewController = MapViewController()
+    var mapVC = MapViewController()
     
     // 文字入れると検索候補が出る、クエリの補完
     let searchCompleter = MKLocalSearchCompleter()
@@ -40,7 +40,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         // アプリのrootViewControllerを取得してMapViewControllerに代入する
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
-        mapViewController = (windowScene?.windows.first?.rootViewController as? MapViewController)!
+        mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
         
         searchBar.delegate = self
         
@@ -128,9 +128,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         searchBar.resignFirstResponder()
         table.deselectRow(at: indexPath, animated: true)
         
-        mapViewController.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
+        mapVC.request = MKLocalSearch.Request(completion: searchCompleter.results[indexPath.row])
+        mapVC.locaionName = searchCompleter.results[indexPath.row].title
         
-        mapViewController.showPin()
+        mapVC.showPin()
         
     }
 

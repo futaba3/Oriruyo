@@ -21,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
     
     var request = MKLocalSearch.Request()
+    var locaionName: String?
     
     var fpc = FloatingPanelController()
     var setDestFpc = FloatingPanelController()
@@ -184,10 +185,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 pin.title = item.placemark.title
                 self.mapView.addAnnotation(pin)
                 
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appDelegate.locationLat = item.placemark.coordinate.latitude
-//                appDelegate.locationLong = item.placemark.coordinate.longitude
-
+                setDestVC.location = item.placemark.coordinate
+                setDestVC.destName = self.locaionName
+                setDestVC.load()
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })
