@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let pointOfInterestFilter = MKPointOfInterestFilter(including: [.airport, .publicTransport])
     
+    // fromSearchVC
     var request = MKLocalSearch.Request()
     var locaionName: String?
     

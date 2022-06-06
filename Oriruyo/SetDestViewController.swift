@@ -17,8 +17,11 @@ class SetDestViewController: UIViewController {
     
     @IBOutlet var setAlertButton: UIButton!
     
+    var alertDistance: Double? = 1000
+    
     var alertIsOn: Bool = false
     
+    // fromMapVC
     var location: CLLocationCoordinate2D?
     var destName: String?
     
@@ -77,7 +80,7 @@ class SetDestViewController: UIViewController {
         }
 
         alertDestNameLabel.text = destName
-        alertDistanceLabel.text = "通知位置　1000m手前"
+        alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
         
     }
     
@@ -88,7 +91,20 @@ class SetDestViewController: UIViewController {
         }
     
     @IBAction func changeAlertDistance() {
-        
+        var distanceTextField = UITextField()
+        distanceTextField.keyboardType = .numberPad
+        distanceTextField.placeholder = "1000"
+        let alert = UIAlertController(title: "通知位置の距離を変更する", message: "メートル単位で指定してください。\nおすすめ距離\n電車:1000(m)\nバス:500(m)\n新幹線:3000(m)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "決定", style: .default) { (action) in
+            // ここに通知距離のlabel変えるやつ
+            self.alertDistance = Double(distanceTextField.text!)
+            self.alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
+        }
+        alert.addTextField{ (textField) in
+            distanceTextField = textField
+        }
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func setAlert() {
