@@ -25,7 +25,7 @@ class SetDestViewController: UIViewController {
     var location: CLLocationCoordinate2D?
     var destName: String?
     
-    var mapViewController = MapViewController()
+    var mapVC = MapViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class SetDestViewController: UIViewController {
         // アプリのrootViewControllerを取得してMapViewControllerに代入する
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
-        mapViewController = (windowScene?.windows.first?.rootViewController as? MapViewController)!
+        mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,7 +121,30 @@ class SetDestViewController: UIViewController {
     }
     
     @IBAction func backToSearchVC() {
-        
+        let alert: UIAlertController = UIAlertController(title: "降りる場所を変更しますか？", message: "検索画面に戻ります", preferredStyle: .alert)
+        // OKボタン
+        alert.addAction(
+            UIAlertAction(
+                title: "はい",
+                style: .destructive,
+                handler: { action in
+                    self.mapVC.backToSearchVCFromSetDestVC()
+                    print("はい")
+                }
+            )
+        )
+        // キャンセルボタン
+        alert.addAction(
+            UIAlertAction(
+                title: "いいえ",
+                // .destructiveで赤文字になる
+                style: .cancel,
+                handler: {action in
+                    print("いいえ")
+                }
+            )
+        )
+        present(alert, animated: true, completion: nil)
     }
 
 }

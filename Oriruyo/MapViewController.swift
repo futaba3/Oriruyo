@@ -193,6 +193,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         })
     }
+    
+    func backToSearchVCFromSetDestVC() {
+        mapView.removeAnnotations(mapView.annotations)
+        setDestFpc.removePanelFromParent(animated: true)
+        fpc.show()
+    }
 
 
 }
