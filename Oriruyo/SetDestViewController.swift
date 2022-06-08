@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class SetDestViewController: UIViewController {
+class SetDestViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var alertDestNameLabel: UILabel!
     @IBOutlet var alertDestAdressLabel: UILabel!
@@ -48,6 +48,7 @@ class SetDestViewController: UIViewController {
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
         mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,31 +93,87 @@ class SetDestViewController: UIViewController {
     
     @IBAction func changeAlertDistance() {
         var distanceTextField = UITextField()
-        distanceTextField.keyboardType = .numberPad
-        distanceTextField.placeholder = "1000"
+        
         let alert = UIAlertController(title: "通知位置の距離を変更する", message: "メートル単位で指定してください。\nおすすめ距離\n電車:1000(m)\nバス:500(m)\n新幹線:3000(m)", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "決定", style: .default) { (action) in
-            // ここに通知距離のlabel変えるやつ
-            self.alertDistance = Double(distanceTextField.text!)
-            self.alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
-        }
         alert.addTextField{ (textField) in
             distanceTextField = textField
+            distanceTextField.delegate = self
+            distanceTextField.keyboardType = .decimalPad
+            distanceTextField.placeholder = "1000"
+            
         }
-        alert.addAction(alertAction)
+        alert.addAction(
+            UIAlertAction(
+                title: "決定",
+                style: .default,
+                handler: {action in
+                    if Double(distanceTextField.text!) == nil {
+                        let numberAlert = UIAlertController(title: "数字で入力してください", message: "メートル単位です", preferredStyle: .alert)
+                        numberAlert.addAction(UIAlertAction(
+                            title: "はい",
+                            style: .cancel))
+                        self.present(numberAlert, animated: true, completion: nil)
+
+                    } else {
+                        self.alertDistance = Double(distanceTextField.text!)
+                        self.alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
+                    }
+                }
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "いいえ",
+                style: .cancel,
+                handler: {action in
+                    print("いいえ")
+                }
+            )
+        )
         present(alert, animated: true, completion: nil)
     }
     
     @IBAction func setAlert() {
         if alertIsOn == false {
             // 通知設定前
-            alertIsOn = true
-            setAlertButton.setTitle("通知解除", for: .normal)
+
+            // ユーザーの現在地が取得できていない場合は実行しない
+            if mapVC.userLocation2D == nil {
+                mapVC.showAlwaysPermissionAlert()
+                
+            } else {
+                alertIsOn = true
+                mapVC.setAlert()
+                setAlertButton.setTitle("通知解除", for: .normal)
+            }
             
         } else if alertIsOn == true {
             // 通知設定中
-            alertIsOn = false
-            setAlertButton.setTitle("ORIRUYO", for: .normal)
+            
+            let alert: UIAlertController = UIAlertController(title: "通知を解除しますか？", message: "", preferredStyle: .alert)
+            alert.addAction(
+                UIAlertAction(
+                    title: "はい",
+                    style: .destructive,
+                    handler: { action in
+                        
+                        self.alertIsOn = false
+                        self.mapVC.cancelAlert()
+                        self.setAlertButton.setTitle("ORIRUYO", for: .normal)
+                        print("はい")
+                    }
+                )
+            )
+            alert.addAction(
+                UIAlertAction(
+                    title: "いいえ",
+                    style: .cancel,
+                    handler: {action in
+                        print("いいえ")
+                    }
+                )
+            )
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -126,10 +183,11 @@ class SetDestViewController: UIViewController {
         alert.addAction(
             UIAlertAction(
                 title: "はい",
+                // .destructiveで赤文字になる
                 style: .destructive,
                 handler: { action in
                     self.mapVC.backToSearchVCFromSetDestVC()
-                    print("はい")
+                    print("検索画面に戻る")
                 }
             )
         )
@@ -137,10 +195,9 @@ class SetDestViewController: UIViewController {
         alert.addAction(
             UIAlertAction(
                 title: "いいえ",
-                // .destructiveで赤文字になる
                 style: .cancel,
                 handler: {action in
-                    print("いいえ")
+                    print("降りる場所変えない")
                 }
             )
         )
