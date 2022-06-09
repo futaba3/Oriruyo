@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FloatingPanel
+import UserNotifications
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, FloatingPanelControllerDelegate {
     
@@ -21,12 +22,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var didStartUpdatingLocation = false
     var alertIsOn: Bool = false
     
-    var userLocation2D: CLLocationCoordinate2D?
-    var destLocation2D: CLLocationCoordinate2D?
+    var userLocation: CLLocationCoordinate2D?
+    var destLocation: CLLocationCoordinate2D?
     
     // fromSearchVC
     var request = MKLocalSearch.Request()
     var locaionName: String?
+    
+    // fromSetDestVC
+    var alertDistance: Double?
     
     var fpc = FloatingPanelController()
     var setDestFpc = FloatingPanelController()
@@ -139,8 +143,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // 位置情報取得できたらマップを更新
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            // 通知を設定していないときはstopUpdatingLocationにしたい
             locationManager.stopUpdatingLocation()
+            
             updateMap(currentLocation: location)
         }
     }
@@ -165,7 +169,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let region: MKCoordinateRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: verticalRegionInMeters, longitudinalMeters: horizonalRegionInMeters)
         
-        userLocation2D = currentLocation.coordinate
+        userLocation = currentLocation.coordinate
         
         mapView.setRegion(region, animated: true)
     }
@@ -193,30 +197,90 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 pin.title = item.placemark.title
                 self.mapView.addAnnotation(pin)
                 
-                self.destLocation2D = item.placemark.coordinate
+                self.destLocation = item.placemark.coordinate
                 
                 setDestVC.location = item.placemark.coordinate
                 setDestVC.destName = self.locaionName
                 setDestVC.load()
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+            self.mapView.region = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: 2500, longitudinalMeters: 2500)
+            let overlay = MKCircle(center: self.destLocation!, radius: 1000)
+            self.mapView.addOverlay(overlay)
         })
+    }
+
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.strokeColor = .gray
+        circleRenderer.lineWidth = 1.0
+        circleRenderer.fillColor = UIColor.gray.withAlphaComponent(0.2)
+        return circleRenderer
+    }
+    
+    func changeOverlay() {
+        removeOverlay()
+        let overlay = MKCircle(center: self.destLocation!, radius: alertDistance ?? 1000)
+        self.mapView.addOverlay(overlay)
+        
+        let region: MKCoordinateRegion = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: self.alertDistance ?? 1000 * 2.5, longitudinalMeters: self.alertDistance ?? 1000 * 2.5)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func removeOverlay() {
+        mapView.removeOverlays(mapView.overlays)
     }
     
     func setAlert() {
         alertIsOn = true
         
-        // CLLocationCoordinate2DをCLLocationに変換する
-        let userLocation: CLLocation = CLLocation(latitude: userLocation2D!.latitude, longitude: userLocation2D!.longitude)
-        let destLocation: CLLocation = CLLocation(latitude: destLocation2D!.latitude, longitude: destLocation2D!.longitude)
+        let alert: UIAlertController = UIAlertController(title: "通知を設定しました", message: "多少の誤差がある他、位置情報を取得できなかった場合は適切な位置で通知を送信できないことがあります。", preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil
+            )
+        )
+        present(alert, animated: true, completion: nil)
         
-        let distance = destLocation.distance(from: userLocation)
-        print(distance)
+        let content = UNMutableNotificationContent()
+        content.title = "降りるよ‼️‼️‼️‼️‼️‼️‼️"
+        content.body = "まもなく\(locaionName!)に到着します"
+        content.sound = UNNotificationSound.default
+        
+        // ジオフェンス
+        let region = CLCircularRegion(center: destLocation!, radius: alertDistance ?? 1000, identifier: "dest")
+        // 円の中に入った時に通知、出た時は通知しない
+        region.notifyOnEntry = true
+        region.notifyOnExit = false
+        let trigger = UNLocationNotificationTrigger.init(region: region, repeats: false)
+        
+        let request = UNNotificationRequest.init(identifier: "DestNotification", content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request, withCompletionHandler: nil)
+        print("😕通知設定しました")
+        print(destLocation!)
+        print(alertDistance ?? 1000)
+        
+//        // お試し通知（来ない）
+//        let contents = UNMutableNotificationContent()
+//        content.title = "test‼️‼️‼️‼️‼️‼️‼️"
+//        content.body = "まもなく到着します"
+//        content.sound = UNNotificationSound.default
+//        let triggers = UNTimeIntervalNotificationTrigger.init(timeInterval: 60, repeats: true)
+//        let requests = UNNotificationRequest.init(identifier: "identifier", content: contents, trigger: triggers)
+//        center.add(requests, withCompletionHandler: nil)
     }
+    
+    
 
     func cancelAlert() {
         alertIsOn = false
-        // 通知解除、位置情報の取得停止
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        print("😨通知解除")
     }
 
     

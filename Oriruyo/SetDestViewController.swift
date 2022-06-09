@@ -106,7 +106,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             UIAlertAction(
                 title: "決定",
                 style: .default,
-                handler: {action in
+                handler: { [self]action in
                     if Double(distanceTextField.text!) == nil {
                         let numberAlert = UIAlertController(title: "数字で入力してください", message: "メートル単位です", preferredStyle: .alert)
                         numberAlert.addAction(UIAlertAction(
@@ -117,6 +117,8 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         self.alertDistance = Double(distanceTextField.text!)
                         self.alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
+                        self.mapVC.alertDistance = alertDistance
+                        self.mapVC.changeOverlay()
                     }
                 }
             )
@@ -138,7 +140,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             // 通知設定前
 
             // ユーザーの現在地が取得できていない場合は実行しない
-            if mapVC.userLocation2D == nil {
+            if mapVC.userLocation == nil {
                 mapVC.showAlwaysPermissionAlert()
                 
             } else {
@@ -186,6 +188,11 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                 // .destructiveで赤文字になる
                 style: .destructive,
                 handler: { action in
+                    if self.alertIsOn == true {
+                        self.mapVC.cancelAlert()
+                        self.alertIsOn = false
+                    }
+                    self.mapVC.removeOverlay()
                     self.mapVC.backToSearchVCFromSetDestVC()
                     print("検索画面に戻る")
                 }
