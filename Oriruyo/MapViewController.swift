@@ -209,7 +209,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.mapView.addOverlay(overlay)
         })
     }
-
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 自分の現在地はピン変更しない
+        guard annotation as? MKUserLocation != mapView.userLocation else { return nil }
+        
+        let identifier = "MyPin"
+        var annotationView: MKAnnotationView!
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        
+        let pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
+        annotationView.image = pinImage
+        annotationView.annotation = annotation
+        annotationView.canShowCallout = true
+        
+        return annotationView
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
@@ -255,6 +272,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // 円の中に入った時に通知、出た時は通知しない
         region.notifyOnEntry = true
         region.notifyOnExit = false
+//        locationManager.startMonitoring(for: region)
+//        locationManager.requestState(for: region)
+        
         let trigger = UNLocationNotificationTrigger.init(region: region, repeats: false)
         
         let request = UNNotificationRequest.init(identifier: "DestNotification", content: content, trigger: trigger)
@@ -263,22 +283,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("😕通知設定しました")
         print(destLocation!)
         print(alertDistance ?? 1000)
-        
-//        // お試し通知（来ない）
-//        let contents = UNMutableNotificationContent()
-//        content.title = "test‼️‼️‼️‼️‼️‼️‼️"
-//        content.body = "まもなく到着します"
-//        content.sound = UNNotificationSound.default
-//        let triggers = UNTimeIntervalNotificationTrigger.init(timeInterval: 60, repeats: true)
-//        let requests = UNNotificationRequest.init(identifier: "identifier", content: contents, trigger: triggers)
-//        center.add(requests, withCompletionHandler: nil)
     }
     
     
 
     func cancelAlert() {
         alertIsOn = false
-        
+//        locationManager.stopMonitoring(for: rei)
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         print("😨通知解除")
     }

@@ -16,6 +16,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var alertDistanceLabel: UILabel!
     
     @IBOutlet var setAlertButton: UIButton!
+    @IBOutlet var backToSearchVCButton: UIButton!
     
     var alertDistance: Double? = 1000
     
@@ -33,6 +34,13 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
         self.overrideUserInterfaceStyle = .light
         
         view.backgroundColor = .white
+        
+        backToSearchVCButton.layer.cornerRadius = 10
+        setAlertButton.layer.cornerRadius = 10
+        setAlertButton.backgroundColor = UIColor.black
+        setAlertButton.setTitleColor(UIColor.white, for: .normal)
+        setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        
 
 //        // ダークモード対応用
 //        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
@@ -146,6 +154,11 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             } else {
                 alertIsOn = true
                 mapVC.setAlert()
+                setAlertButton.backgroundColor = UIColor.white
+                setAlertButton.setTitleColor(UIColor.black, for: .normal)
+                setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+                setAlertButton.layer.borderColor = UIColor.black.cgColor
+                setAlertButton.layer.borderWidth = 3
                 setAlertButton.setTitle("通知解除", for: .normal)
             }
             
@@ -161,6 +174,10 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                         
                         self.alertIsOn = false
                         self.mapVC.cancelAlert()
+                        self.setAlertButton.layer.cornerRadius = 10
+                        self.setAlertButton.backgroundColor = UIColor.black
+                        self.setAlertButton.setTitleColor(UIColor.white, for: .normal)
+                        self.setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
                         self.setAlertButton.setTitle("ORIRUYO", for: .normal)
                         print("はい")
                     }

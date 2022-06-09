@@ -43,6 +43,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
         
         searchBar.delegate = self
+        // 空のUIImageを設定すると上下の黒い線が消える
+        searchBar.backgroundImage = UIImage()
         
         searchCompleter.delegate = self
         searchCompleter.pointOfInterestFilter = pointOfInterestFilter
