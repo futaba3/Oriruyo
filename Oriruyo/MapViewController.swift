@@ -11,7 +11,7 @@ import CoreLocation
 import FloatingPanel
 import UserNotifications
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, FloatingPanelControllerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, FloatingPanelControllerDelegate, UNUserNotificationCenterDelegate {
     
     @IBOutlet var mapView: MKMapView!
     
@@ -69,7 +69,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         fpc.set(contentViewController: searchVC)
         fpc.track(scrollView: searchVC.table)
         fpc.addPanel(toParent: self)
+        
+        // NotificationCenterを利用してフォアグラウンドに復帰したかどうかを判定
+        NotificationCenter.default.addObserver(self, selector: #selector(foreground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
 
+    }
+    
+    // フォアグラウンドに復帰した時の処理
+    @objc func foreground(notification: Notification) {
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        // 通知設定中
+        if appDelegate.alertDidReceive == false {
+            setDestFpc.show()
+        } else {
+            cancelAlert()
+            fpc.show()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -204,7 +219,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 setDestVC.load()
             }
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-            self.mapView.region = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: 2500, longitudinalMeters: 2500)
+            // 横方向（経度）の距離
+            let horizonalRegionInMeters: Double = 2500
+            let width = self.mapView.frame.width
+            let height = self.mapView.frame.height
+            // MapViewの画面サイズから縦横のアスペクト比を求め、縦方向（緯度）の距離を求める
+            let verticalRegionInMeters = Double(height / width * CGFloat(horizonalRegionInMeters))
+            
+            self.mapView.region = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: verticalRegionInMeters, longitudinalMeters: horizonalRegionInMeters)
             let overlay = MKCircle(center: self.destLocation!, radius: 1000)
             self.mapView.addOverlay(overlay)
         })
@@ -241,7 +263,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let overlay = MKCircle(center: self.destLocation!, radius: alertDistance ?? 1000)
         self.mapView.addOverlay(overlay)
         
-        let region: MKCoordinateRegion = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: self.alertDistance ?? 1000 * 2.5, longitudinalMeters: self.alertDistance ?? 1000 * 2.5)
+        // 横方向（経度）の距離
+        let horizonalRegionInMeters = alertDistance ?? 1000
+        let width = self.mapView.frame.width
+        let height = self.mapView.frame.height
+        // MapViewの画面サイズから縦横のアスペクト比を求め、縦方向（緯度）の距離を求める
+        let verticalRegionInMeters = Double(height / width * CGFloat(horizonalRegionInMeters))
+        
+        let region: MKCoordinateRegion = MKCoordinateRegion(center: self.destLocation!, latitudinalMeters: verticalRegionInMeters * 2, longitudinalMeters: horizonalRegionInMeters * 2)
         mapView.setRegion(region, animated: true)
     }
     
@@ -251,6 +280,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func setAlert() {
         alertIsOn = true
+        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.alertDidReceive = false
         
         let alert: UIAlertController = UIAlertController(title: "通知を設定しました", message: "多少の誤差がある他、位置情報を取得できなかった場合は適切な位置で通知を送信できないことがあります。", preferredStyle: .alert)
         alert.addAction(
@@ -267,13 +298,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         content.body = "まもなく\(locaionName!)に到着します"
         content.sound = UNNotificationSound.default
         
-        // ジオフェンス
-        let region = CLCircularRegion(center: destLocation!, radius: alertDistance ?? 1000, identifier: "dest")
+        // ジオフェンス 誤差とラグを考えて通知距離*1.1mで通知
+        let region = CLCircularRegion(center: destLocation!, radius: alertDistance ?? 1000 * 1.1, identifier: "dest")
         // 円の中に入った時に通知、出た時は通知しない
         region.notifyOnEntry = true
         region.notifyOnExit = false
-//        locationManager.startMonitoring(for: region)
-//        locationManager.requestState(for: region)
         
         let trigger = UNLocationNotificationTrigger.init(region: region, repeats: false)
         
@@ -284,12 +313,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(destLocation!)
         print(alertDistance ?? 1000)
     }
-    
-    
 
     func cancelAlert() {
         alertIsOn = false
-//        locationManager.stopMonitoring(for: rei)
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         print("😨通知解除")
     }

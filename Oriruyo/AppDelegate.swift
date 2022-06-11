@@ -10,6 +10,8 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    var alertDidReceive: Bool?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,12 +26,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    // フォアグラウンドの場合でも通知を表示する
+    // フォアグラウンドで通知を受信した場合（completionHandlerでフォアグラウンドの場合でも通知を表示可能に）
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        alertDidReceive = true
+        
+        
         
         completionHandler([[.banner, .list, .sound]])
+    }
+    
+    // バックグラウンドで通知を受信しタップした場合
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo as NSDictionary
+        print("\(userInfo)の通知タップされたよ")
+        alertDidReceive = true
+
+        var mapVC = MapViewController()
+        // アプリのrootViewControllerを取得してMapViewControllerに代入する
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
+        mapVC.cancelAlert()
+        
+        completionHandler()
     }
     
 

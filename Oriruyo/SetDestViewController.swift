@@ -36,12 +36,8 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         
         backToSearchVCButton.layer.cornerRadius = 10
-        setAlertButton.layer.cornerRadius = 10
-        setAlertButton.backgroundColor = UIColor.black
-        setAlertButton.setTitleColor(UIColor.white, for: .normal)
-        setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        
-
+        settingSetAlertButton()
+    
 //        // ダークモード対応用
 //        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
 //            // ダークモードの場合
@@ -57,17 +53,6 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
         let windowScene = scenes.first as? UIWindowScene
         mapVC = (windowScene?.windows.first?.rootViewController as? MapViewController)!
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if alertIsOn == false {
-            // 通知設定前
-            setAlertButton.setTitle("ORIRUYO", for: .normal)
-            
-        } else if alertIsOn == true {
-            // 通知設定中
-            setAlertButton.setTitle("通知解除", for: .normal)
-        }
     }
     
     func load() {
@@ -154,12 +139,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             } else {
                 alertIsOn = true
                 mapVC.setAlert()
-                setAlertButton.backgroundColor = UIColor.white
-                setAlertButton.setTitleColor(UIColor.black, for: .normal)
-                setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-                setAlertButton.layer.borderColor = UIColor.black.cgColor
-                setAlertButton.layer.borderWidth = 3
-                setAlertButton.setTitle("通知解除", for: .normal)
+                self.settingSetAlertButton()
             }
             
         } else if alertIsOn == true {
@@ -174,11 +154,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                         
                         self.alertIsOn = false
                         self.mapVC.cancelAlert()
-                        self.setAlertButton.layer.cornerRadius = 10
-                        self.setAlertButton.backgroundColor = UIColor.black
-                        self.setAlertButton.setTitleColor(UIColor.white, for: .normal)
-                        self.setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-                        self.setAlertButton.setTitle("ORIRUYO", for: .normal)
+                        self.settingSetAlertButton()
                         print("はい")
                     }
                 )
@@ -193,6 +169,26 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                 )
             )
             present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func settingSetAlertButton() {
+        if alertIsOn == false {
+            setAlertButton.layer.cornerRadius = 10
+            setAlertButton.backgroundColor = UIColor.black
+            setAlertButton.setTitleColor(UIColor.white, for: .normal)
+            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            setAlertButton.setTitle("ORIRUYO", for: .normal)
+            
+        } else if alertIsOn == true {
+            
+            setAlertButton.layer.cornerRadius = 10
+            setAlertButton.backgroundColor = UIColor.white
+            setAlertButton.setTitleColor(UIColor.black, for: .normal)
+            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            setAlertButton.layer.borderColor = UIColor.black.cgColor
+            setAlertButton.layer.borderWidth = 3
+            setAlertButton.setTitle("通知解除", for: .normal)
         }
     }
     
