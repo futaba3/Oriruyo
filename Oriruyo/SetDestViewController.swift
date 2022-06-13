@@ -112,6 +112,10 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                         self.alertDistanceLabel.text = "通知位置　\(self.alertDistance ?? 1000)m手前"
                         self.mapVC.alertDistance = alertDistance
                         self.mapVC.changeOverlay()
+                        if alertIsOn == true {
+                            self.mapVC.cancelAlert()
+                            self.mapVC.destNotification()
+                        }
                     }
                 }
             )
@@ -177,7 +181,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             setAlertButton.layer.cornerRadius = 10
             setAlertButton.backgroundColor = UIColor.black
             setAlertButton.setTitleColor(UIColor.white, for: .normal)
-            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
             setAlertButton.setTitle("ORIRUYO", for: .normal)
             
         } else if alertIsOn == true {
@@ -185,7 +189,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
             setAlertButton.layer.cornerRadius = 10
             setAlertButton.backgroundColor = UIColor.white
             setAlertButton.setTitleColor(UIColor.black, for: .normal)
-            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
             setAlertButton.layer.borderColor = UIColor.black.cgColor
             setAlertButton.layer.borderWidth = 3
             setAlertButton.setTitle("通知解除", for: .normal)
@@ -201,11 +205,7 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
                 // .destructiveで赤文字になる
                 style: .destructive,
                 handler: { action in
-                    if self.alertIsOn == true {
-                        self.mapVC.cancelAlert()
-                        self.alertIsOn = false
-                    }
-                    self.mapVC.removeOverlay()
+                    self.alertIsOn = false
                     self.mapVC.backToSearchVCFromSetDestVC()
                     print("検索画面に戻る")
                 }

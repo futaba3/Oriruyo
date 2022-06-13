@@ -77,7 +77,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="降りる場所を検索" translatesAutoresizingMaskIntoConstraints="NO" id="Cwe-cW-nSu">
+                            <searchBar contentMode="redraw" text="" placeholder="降りる場所を入力" translatesAutoresizingMaskIntoConstraints="NO" id="Cwe-cW-nSu">
                                 <rect key="frame" x="0.0" y="74" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6rO-ki-oSQ"/>
@@ -135,7 +135,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="bgV-eT-753"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

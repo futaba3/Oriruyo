@@ -83,6 +83,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             setDestFpc.show()
         } else {
             cancelAlert()
+            removeOverlay()
+            mapView.removeAnnotations(mapView.annotations)
+            setDestFpc.removePanelFromParent(animated: true)
             fpc.show()
         }
     }
@@ -283,6 +286,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.alertDidReceive = false
         
+        destNotification()
+        
         let alert: UIAlertController = UIAlertController(title: "通知を設定しました", message: "多少の誤差がある他、位置情報を取得できなかった場合は適切な位置で通知を送信できないことがあります。", preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(
@@ -292,7 +297,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             )
         )
         present(alert, animated: true, completion: nil)
-        
+    }
+    
+    func destNotification() {
         let content = UNMutableNotificationContent()
         content.title = "降りるよ‼️‼️‼️‼️‼️‼️‼️"
         content.body = "まもなく\(locaionName!)に到着します"
@@ -317,11 +324,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func cancelAlert() {
         alertIsOn = false
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        
         print("😨通知解除")
     }
 
     
     func backToSearchVCFromSetDestVC() {
+        if alertIsOn == true {
+            cancelAlert()
+            alertIsOn = false
+        }
+        removeOverlay()
         mapView.removeAnnotations(mapView.annotations)
         setDestFpc.removePanelFromParent(animated: true)
         fpc.show()
