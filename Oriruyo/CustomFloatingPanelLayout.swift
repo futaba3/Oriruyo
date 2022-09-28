@@ -5,7 +5,7 @@
 //  Created by 工藤彩名 on 2022/05/27.
 //
 
-import Foundation
+import UIKit
 import FloatingPanel
 
 class CustomFloatingPanelLayout: FloatingPanelLayout {

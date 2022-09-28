@@ -38,8 +38,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 常にライトモード（明るい外観）を指定することでダークモード適用を回避（そのうちダークモードに対応したい）
-        self.overrideUserInterfaceStyle = .light
         
         // インスタンスを生成
         locationManager = CLLocationManager()
@@ -245,7 +243,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
         
-        let pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
+//        let pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
+        let pinImage = UIImage(systemName: "mappin.circle.fill")
+//        if #available(iOS 15.0, *) {
+//            var pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(hierarchicalColor: .gray))
+//        } else {
+//            // Fallback on earlier versions
+//        }
+    
         annotationView.image = pinImage
         annotationView.annotation = annotation
         annotationView.canShowCallout = true

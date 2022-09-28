@@ -24,18 +24,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 常にライトモード（明るい外観）を指定することでダークモード適用を回避
-        self.overrideUserInterfaceStyle = .light
-        view.backgroundColor = .white
-//        // ダークモード対応用
-//        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
-//            // ダークモードの場合
-//            if traitCollection.userInterfaceStyle == .dark {
-//                return .black
-//            } else {
-//                return .white
-//            }
-//        }
+        // dynamicColorでダークモードに応じて色を変える
+        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            // ダークモードの場合
+            if traitCollection.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .white
+            }
+        }
         
         // アプリのrootViewControllerを取得してMapViewControllerに代入する
         let scenes = UIApplication.shared.connectedScenes
@@ -117,7 +114,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         
         content.text = searchCompleter.results[indexPath.row].title
 //        content.secondaryText = searchCompleter.results[indexPath.row].subtitle
-        content.image = UIImage(systemName: "mappin.circle")
+        let cellImage = UIImage(systemName: "mappin.circle")
+        // ピンの色を変更
+        if #available(iOS 15.0, *) {
+            let configuration =
+            UIImage.SymbolConfiguration(hierarchicalColor: .gray)
+            content.imageProperties.preferredSymbolConfiguration = configuration
+        } else {
+            // Fallback on earlier versions
+        }
+        content.image = cellImage
         
         cell.contentConfiguration = content
         

@@ -30,23 +30,19 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 常にライトモード（明るい外観）を指定することでダークモード適用を回避
-        self.overrideUserInterfaceStyle = .light
         
-        view.backgroundColor = .white
+        // dynamicColorでダークモードに応じて色を変える
+        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            // ダークモードの場合
+            if traitCollection.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .white
+            }
+        }
         
         backToSearchVCButton.layer.cornerRadius = 10
         settingSetAlertButton()
-    
-//        // ダークモード対応用
-//        view.backgroundColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
-//            // ダークモードの場合
-//            if traitCollection.userInterfaceStyle == .dark {
-//                return .black
-//            } else {
-//                return .white
-//            }
-//        }
     
         // アプリのrootViewControllerを取得してMapViewControllerに代入する
         let scenes = UIApplication.shared.connectedScenes
@@ -177,20 +173,36 @@ class SetDestViewController: UIViewController, UITextFieldDelegate {
     }
     
     func settingSetAlertButton() {
+        let inDarkBlackInLightWhite = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .white
+            }
+        }
+        let inDarkWhiteInLightBlack = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .white
+            } else {
+                return .black
+            }
+        }
+
         if alertIsOn == false {
+            // ダークなら背景白文字黒→ライトで背景黒文字白
             setAlertButton.layer.cornerRadius = 10
-            setAlertButton.backgroundColor = UIColor.black
-            setAlertButton.setTitleColor(UIColor.white, for: .normal)
+            setAlertButton.backgroundColor = inDarkWhiteInLightBlack
+            setAlertButton.setTitleColor(inDarkBlackInLightWhite, for: .normal)
             setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
             setAlertButton.setTitle("ORIRUYO", for: .normal)
             
         } else if alertIsOn == true {
-            
+            // ダークなら背景黒文字白枠白→ライトで背景白文字黒枠黒
             setAlertButton.layer.cornerRadius = 10
-            setAlertButton.backgroundColor = UIColor.white
-            setAlertButton.setTitleColor(UIColor.black, for: .normal)
+            setAlertButton.backgroundColor = inDarkBlackInLightWhite
+            setAlertButton.setTitleColor(inDarkWhiteInLightBlack, for: .normal)
             setAlertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-            setAlertButton.layer.borderColor = UIColor.black.cgColor
+            setAlertButton.layer.borderColor = inDarkWhiteInLightBlack.cgColor
             setAlertButton.layer.borderWidth = 3
             setAlertButton.setTitle("通知解除", for: .normal)
         }
