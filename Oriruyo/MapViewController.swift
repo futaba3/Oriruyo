@@ -243,13 +243,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
         
-//        let pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
         let pinImage = UIImage(systemName: "mappin.circle.fill")
-//        if #available(iOS 15.0, *) {
-//            var pinImage = UIImage(systemName: "mappin.circle.fill", withConfiguration: UIImage.SymbolConfiguration(hierarchicalColor: .gray))
-//        } else {
-//            // Fallback on earlier versions
-//        }
     
         annotationView.image = pinImage
         annotationView.annotation = annotation
